@@ -1,0 +1,354 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-3 mb-2-6">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/hand_glove.png' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Hand Gloves</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$11.79</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/shopping_bag.png' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Products Bag</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$79.00</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/cleaning_equipment.png' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Cleaning Equipment</a></h4>
+                    <div class="product-rating mb-1">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$19.22</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6">
+                <div class="card-wrapper mb-1">
+                    <div class="card-img"><img src="{% static 'images/washing_liquid.png' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Washing Liquids</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$28.25</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6 mb-lg-0">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/vacuum_cleaner.png' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Vacuum Cleaner</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$129.79</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6 mb-lg-0">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/toilet_washer.jpg' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Toilet Washer</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$44.42</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6 mb-sm-0">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/sweat_shirt.jpg' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Sweat Shirt</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$24.69</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/cleaning_supplies.png' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Cleaning Supplies</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$79.79</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-3 mb-2-6">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/toilet_brush.png' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Toilet Brush</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$8.67</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/washing_machine.png' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Washing Machine</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$90.00</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/hand_sponge.png' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Hand Sponge</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$4.22</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/air_freshner.png' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Air Freshner</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$12.25</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6 mb-lg-0">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/washing_bucket.jpg' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Washing Buckets</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$56.79</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6 mb-lg-0">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/detergent.png' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Powedered Detergents</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$11.42</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-2-6 mb-sm-0">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/standing_broom.jpg' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Standing Broom</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$13.81</h5>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card-wrapper mb-4">
+                    <div class="card-img"><img src="{% static 'images/floor_brush.png' %}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h4 class="h5 mb-2"><a href="#" class="text-secondary">Floor Brush</a></h4>
+                    <div class="product-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star mr-0"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">$22.79</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
