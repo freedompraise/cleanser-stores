@@ -8,13 +8,14 @@ from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 
 def store(request):
-    context={}
+    all = Product.objects.all()
+    context={'all':all}
     return render(request,'store/store.html',context)
 
 def product_page(request,pk):
     product=Product.objects.get(id=pk)
     context={"product":product}
-    return render(request,'store/checkout.html',context)
+    return render(request,'store/product.html',context)
 
 def checkout(request):
     context = {}
