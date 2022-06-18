@@ -5,7 +5,7 @@ from store.models import Product
 from .serializers import ProductSerializer
 
 @api_view(['GET', 'POST'])
-def product(request):
+def product_api(request):
 
     if request.method == 'GET':
         snippets = Product.objects.all()
