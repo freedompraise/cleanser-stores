@@ -22,7 +22,7 @@ def cart(request):
     if request.method=="POST":
         id=request.POST.get('id')
         product=Product.objects.get(id=id)
-        quantity= request.POST.get('quantity')
+        quantity=request.POST.get('quantity')
         if quantity:
             product.order=quantity
             product.save()
