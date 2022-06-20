@@ -14,7 +14,10 @@ def store(request):
 
 def product_page(request,pk):
     product=Product.objects.get(id=pk)
-    context={"product":product}
+    discount=str(0.83*float(product.price))
+    save=str(0.17*float(product.price))
+    context={"product":product,'discount':discount[:4],'save':save[:4]}
+
     return render(request,'store/product.html',context)
 
 def checkout(request):

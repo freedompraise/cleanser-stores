@@ -12,8 +12,8 @@ class Product(models.Model):
     rating=models.IntegerField(default=5)
     country_of_origin=models.CharField(max_length=50, default="Nigeria", null=True)
     description=models.TextField(null=True,blank=True)
-    total=models.IntegerField(default=1)
-    #colour = ColorField(default='#FF0000')
+    # total=models.IntegerField(default=1)
+    colour = models.CharField(default='N/A', max_length=15)
     avatar = models.ImageField(null=True, default="cart.jpg")
     updated=models.DateTimeField(auto_now=True) #will take a time stamp when the model is updated
     created=models.DateTimeField(auto_now_add=True) #auto_now_add only takes the first time. It does not update
