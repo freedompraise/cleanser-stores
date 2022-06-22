@@ -4,6 +4,7 @@ from django.contrib import messages
 from .forms import ProductForm, UserForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -24,26 +25,25 @@ def checkout(request):
     context = {}
     return render(request,'store/checkout.html',context)
 
+@login_required(login_url='login')
 def cart(request):
     user=request.user
     products = user.product_set.all()
     total_dict={}
-    if request.method=="POST":
-        id=request.POST.get('id')
-        product=Product.objects.get(id=id)
-        quantity=request.POST.get('quantity')
-        if quantity:
-            product.order=quantity
-            product.save()
+    discount_dict={}
+    for item in products:
+        item.order=request.POST.get(item.name) if request.POST.get(item.name) else item.order
+        item.save
 
 
     for product in products:
-        if product.order:
-            product.total=product.order * product.price
+        if product.order is not None:
+            product.total= int(product.order) * int(product.price)
+            product.discount = float(str(0.13 * float(product.total))[:4])
             product.save()
             total_dict[product.id]=product.total
+            discount_dict[product.id]=product.discount
     total_int=int()
-    discount=int()
     for value in total_dict.values():
         total_int+=value
         
