@@ -13,12 +13,18 @@ def store(request):
     context={'all':all}
     return render(request,'store/store.html',context)
 
+@login_required(login_url='login')
 def product_page(request,pk):
     product=Product.objects.get(id=pk)
     discount=str(0.83*float(product.price))
     save=str(0.17*float(product.price))
-    context={"product":product,'discount':discount[:4],'save':save[:4]}
+    if request.method=='POST':
+        product.customers.add(request.user)
+        product.order=request.POST.get('quantity') if request.POST.get('qauntity') else product.order
+        product.save()
+        return redirect('cart')
 
+    context={"product":product,'discount':discount[:4],'save':save[:4]}
     return render(request,'store/product.html',context)
 
 def checkout(request):
@@ -31,6 +37,7 @@ def cart(request):
     products = user.product_set.all()
     total_dict={}
     discount_dict={}
+    
     for item in products:
         item.order=request.POST.get(item.name) if request.POST.get(item.name) else item.order
         item.save
