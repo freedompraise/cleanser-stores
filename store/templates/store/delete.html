@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
 <style>
    body {
       font-family: Arial, Helvetica, sans-serif;
@@ -21,14 +22,18 @@
 
 
    .close {
-      color: rgb(255, 65, 65);
-      float: right;
-      font-size: 40px;
-      font-weight: bold;
+      border-radius: 25px;
+      background: 	#000080;
+      padding: 20px;
+      width: 170px;
+      height: 150px;
    }
    .close:hover, .close:focus {
       color: #ff1010;
       cursor: pointer;
+   }
+   .close p{
+      color:#f5bd1f
    }
    .modalContent button {
       border: none;
@@ -47,16 +52,16 @@
       background-color: rgb(167, 167, 167);
    }
 </style>
-</head>
 <body>
 <h1>Delete {{product}} from cart?</h1>
 <form action="" method="POST">
     {% csrf_token %}
 <article>
-<input class="openModal" type="submit" value="Delete"/>
-<button class="openModal" onclick="history.back()">Back to Cart</button>
+<input class="del" type="submit" value="delete" name="delete"/>
+<a class="cancel " href="{% url 'cart' %}"><p>Back to Cart</p></a>
 </article>
 </form>
+
 </div>
 </body>
 </html>

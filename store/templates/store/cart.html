@@ -2,19 +2,16 @@
 {% load static %}
 {% block content %}
 
-<head>
-<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
+
 {% if products %}
-<h1 style="position:relative; float:left;">Shopping Cart</h1>
-<div class="container pb-3 mb-1" style="max-width:800px; margin-bottom:50px;">
+<h2 style="position:relative; right:-40px;">Shopping Cart</h2>
+<div class="container pb-3 mb-1" style="max-width:800px; margin-bottom:200px;">
 
     <!-- Cart Item-->
     <form method="POST" action="">
     {% csrf_token %}
     {% for product in products %}
-    <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><i class="fa fa-times"></i></span>
+    <div class="cart-item d-md-flex justify-content-between">
         <div class="px-3 my-3">
             <a class="cart-item-product" href="{% url 'product' product.id %}">
                 <div class="cart-item-product-thumb"><img src="{{product.avatar.url}}" alt="Product"></div>
@@ -34,15 +31,16 @@
         </div>
         <div class="px-4 my-3 text-center">
             <div class="cart-item-label">Discount</div><span class="text-xl font-weight-medium">${{product.discount}}</span>
-            <div class="cart-item-label">&#x2718;</div>
-
+        </div>
+        <div class="px-4 my-3 text-center">
+            <div class="cart-item-label"><button type="submit" >&#x2718;</button></div>
         </div>
     </div>
     <hr>
     {% endfor %}
     <!-- Coupon + Subtotal-->
-        <div class="py-2" style="position:relative; right:-300px;" ><h5>Subtotal:</h5>
-        <span class="d-inline-block align-middle text-xl font-weight-medium">${{total}}</span></div>
+        <div class="py-2" style="position:relative; right:-310px;" ><h5>Subtotal:</h5>
+        <strong class="d-inline-block align-middle font-weight-heavy">${{total}}</strong></div>
     </div>
     <!-- Buttons-->
     <hr class="my-2">
@@ -58,7 +56,7 @@
       {% else %}
 
     			 <div class="row">
-					<div class="col-md-12">
+					< class="col-md-12">
 							<div class="cards">
 						<div class="card-header">
 						</div>
@@ -71,9 +69,6 @@
 								</div>
 						</div>
 				</div>
-					</div>
-				 </div>
 				
     {% endif %}
-  </div>
 {% endblock %}

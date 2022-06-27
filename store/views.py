@@ -5,6 +5,7 @@ from .forms import ProductForm, UserForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+import random
 
 # Create your views here.
 
@@ -27,9 +28,42 @@ def product_page(request,pk):
     context={"product":product,'discount':discount[:4],'save':save[:4]}
     return render(request,'store/product.html',context)
 
+@login_required(login_url='login')
 def checkout(request):
-    context = {}
+    user=request.user
+    products = user.product_set.all()
+    total_dict={}
+    discount_dict={}
+    count=int()
+
+    for item in products:
+        item.order=request.POST.get(item.name) if request.POST.get(item.name) else item.order
+        item.save
+
+
+    for product in products:
+        if product.order is not None:
+            product.total= int(product.order) * int(product.price)
+            product.discount = float(str(0.13 * float(product.total))[:4])
+            product.save()
+            total_dict[product.id]=product.total
+            discount_dict[product.id]=product.discount
+            count+=1
+
+    if request.POST.get("delete")=='delete':
+        product.customers.remove(request.user)
+        product.save()
+
+    total_int=int()
+    for value in total_dict.values():
+        total_int+=value
+        
+    discount=str(0.13*float(total_int))
+    discount=discount.split('.')
+
+    context={"products":products, "total":total_int,'discount':discount[0]+'.'+discount[1][:2],'count':count}
     return render(request,'store/checkout.html',context)
+
 
 @login_required(login_url='login')
 def cart(request):
@@ -50,6 +84,7 @@ def cart(request):
             product.save()
             total_dict[product.id]=product.total
             discount_dict[product.id]=product.discount
+
     total_int=int()
     for value in total_dict.values():
         total_int+=value
@@ -57,17 +92,12 @@ def cart(request):
     discount=str(0.13*float(total_int))
     discount=discount.split('.')
 
+    if request.POST.get("delete")=='delete':
+        product.customers.remove(request.user)
+        product.save()
 
     context={"products":products, "total":total_int,'discount':discount[0]+'.'+discount[1][:2]}
     return render(request,'store/cart.html',context) 
-
-def delete(request,pk):
-    product=Product.objects.get(id=pk)
-    context={"product":product}
-    if request.method=="POST":
-        product.delete()
-        return redirect('cart')
-    return render(request,'store/delete.html', context) 
 
 
 def login(request):

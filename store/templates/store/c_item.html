@@ -1,0 +1,35 @@
+   <form method="POST" action="">
+    {% csrf_token %}
+    {% for product in products %}
+    <div class="cart-item d-md-flex justify-content-between">
+        <div class="px-3 my-3">
+            <a class="cart-item-product" href="{% url 'product' product.id %}">
+                <div class="cart-item-product-thumb"><img src="{{product.avatar.url}}" alt="Product"></div>
+                <div class="cart-item-product-info">
+                    <h4 class="cart-item-product-info" style="color:black;">{{product.name}}</h4><span><strong>Color: </strong>{{product.colour}}</span>
+                </div>
+            </a>
+        </div>
+        <div class="px-4 my-3 text-center">
+            <div class="cart-item-label">Quantity</div>
+            <div class="count-input">
+                <input type="number" value="{{product.order}}" min=1 class="form-control" name="{{product}}"/>
+            </div>
+        </div>
+        <div class="px-4 my-3 text-center">
+            <div class="cart-item-label">Total</div><span class="text-xl font-weight-medium">${{product.total}}</span>
+        </div>
+        <div class="px-4 my-3 text-center">
+            <div class="cart-item-label">Discount</div><span class="text-xl font-weight-medium">${{product.discount}}</span>
+        </div>
+        <div class="px-4 my-3 text-center">
+            <div class="cart-item-label"><a href="{% url 'delete' product.id %}">&#x2718;</a></div>
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+    <!-- Coupon + Subtotal-->
+      </div>
+      </div>
+    <!-- Buttons-->
+       
