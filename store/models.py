@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, AbstractUser
 
 class Product(models.Model):
     customers=models.ManyToManyField(User,blank=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     # size = models.CharField(max_length=7, default="EU 00")
     # product_code=models
     price = models.DecimalField(max_digits=6, decimal_places=2, default=1.00)

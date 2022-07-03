@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # 'avatar',
     'rest_framework',
     # 'corsheaders',
+    'paypal.standard.ipn'
 
 
     
@@ -80,7 +81,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ecommerce.wsgi.application'
+# WSGI_APPLICATION = 'ecommerce.wsgi.application'
 CSRF_USE_SESSIONS = True
 
 # Database
@@ -135,6 +136,10 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT=BASE_DIR/"static/images"
 MEDIA_URL = "/images/"
+
+PAYPAL_RECEIVER_EMAIL = 'sb-8rphk18149368@business.example.com'
+
+PAYPAL_TEST = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

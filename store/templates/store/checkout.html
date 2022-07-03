@@ -1,5 +1,6 @@
+<!DOCTYPE html>
+<html>
 {% load static %}
-
 
 <style>
 body{margin-top:20px;
@@ -128,7 +129,7 @@ table.shoping-cart-table tr td:last-child {
                     </span>
                     <div class="m-t-sm">
                         <div class="btn-group">
-                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Checkout</a>
+                        <a href="{% url 'process-payment' %}" class="btn btn-primary btn-sm"><i class="fa fa-shopping-cart"></i> Checkout</a>
                         <a href="#" class="btn btn-white btn-sm"> Cancel</a>
                         </div>
                     </div>
@@ -181,3 +182,4 @@ table.shoping-cart-table tr td:last-child {
     </div>
 </div>
 </div>
+</html>
