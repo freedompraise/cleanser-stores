@@ -1,0 +1,27 @@
+{% extends 'store/main.html' %}
+
+
+{% if page == 'process'}
+{% block title %}Make Payment {% endblock %}
+
+{% block content %}
+<h4>Pay with Paypal</h4>
+{{ form.render }}
+{% endblock %}
+
+
+{% elif page == 'done' %}
+
+{% block content %}
+
+    <p>Payment done.</p>
+
+{% endblock %}
+
+{% else %}
+
+{% block content %}
+
+    <p>Payment cancelled.</p>
+
+{% endblock %}

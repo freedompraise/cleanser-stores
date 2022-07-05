@@ -2,73 +2,65 @@
 {% load static %}
 {% block content %}
 
-<head>
-<link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}>
-</head>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </head>
+    <!------ Include the above in your HEAD tag ---------->
+        <body >
+            <div class="container">
+                <div class="row">
+                   <div class="col-xs-4 item-photo">
+                        <img style="width:300px;" src="{{product.avatar.url}}" />
+                    </div>
+                    <div class="col-xs-5" style="border:0px solid gray">
+                        <!-- Datos del vendedor y titulo del producto -->
+                        <h3>{{product}}</h3>    
+                        <h5 style="color:#337ab7">{{product.description}}</h5>
+            
+                        <!-- Precios -->
+                        <div style="margin-top:20px; margin-bottom:20px;">
+                        <h5 class="title-price" style="margin-bottom:3px;">PRICE</h5>
 
-<main class="container">
- 
-  <!-- Left Column / Headphones Image -->
-  <div class="left-column">
-    <img data-image="black" src="images/black.png" alt="">
-    <img data-image="blue" src="images/blue.png" alt="">
-    <img data-image="red" class="active" src="images/red.png" alt="">
-  </div>
- 
- 
-  <!-- Right Column -->
-  <div class="right-column">
- 
-    <!-- Product Description -->
-    <div class="product-description">
-      <span>Headphones</span>
-      <h1>Beats EP</h1>
-      <p>The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance</p>
-    </div>
- 
-    <!-- Product Configuration -->
-    <div class="product-configuration">
- 
-      <!-- Product Color -->
-      <div class="product-color">
-        <span>Color</span>
- 
-        <div class="color-choose">
-          <div>
-            <input data-image="red" type="radio" id="red" name="color" value="red" checked>
-            <label for="red"><span></span></label>
-          </div>
-          <div>
-            <input data-image="blue" type="radio" id="blue" name="color" value="blue">
-            <label for="blue"><span></span></label>
-          </div>
-          <div>
-            <input data-image="black" type="radio" id="black" name="color" value="black">
-            <label for="black"><span></span></label>
-          </div>
-        </div>
- 
-      </div>
- 
-      <!-- Cable Configuration -->
-      <div class="cable-config">
-        <span>Cable configuration</span>
- 
-        <div class="cable-choose">
-          <button>Straight</button>
-          <button>Coiled</button>
-          <button>Long-coiled</button>
-        </div>
- 
-        <a href="#">How to configurate your headphones</a>
-      </div>
-    </div>
- 
-    <!-- Product Pricing -->
-    <div class="product-price">
-      <span>148$</span>
-      <a href="#" class="cart-btn">Add to cart</a>
-    </div>
-  </div>
-</main>
+                        <h3 style="margin:auto;">U$ <span>{{discount}}</span>     <small><s style="color:#D4AF37;">{{product.price}}</s></small>
+                        </h3>    
+            </div>
+
+                <div style="margin-top:20px; margin-bottom:20px;">
+                        <h5 class="title-price" style="margin-bottom:3px;">COLOR
+                         <h3 style="margin-top:0px;">{{product.colour}}</h3> 
+                        </h5>
+                        </div>
+
+                          <div style="margin-top:20px; margin-bottom:20px;">
+                        <h5 class="title-price" style="margin-bottom:3px;">RATING
+                         <h3 style="margin:auto;">{{product.rating}}/5</h3> 
+                        </h5>
+                        </div>
+                        <!-- Detalles especificos del producto -->
+                    <form method="POST" action="">
+                    {% csrf_token %}
+                         <div style="margin-top:20px; margin-bottom:20px;">
+                        <h5 class="title-price" style="margin-bottom:3px;">QUANTITY
+                        </h5>
+                        <input type="number" value="{{product.order}}" name="quantity" min=1/>
+                        </div>            
+            
+                        <!-- Botones de compra -->
+                        <div class="section" style="padding-bottom:20px;">
+                            <button class="btn btn-success"><span style="margin-right:10px" 
+                            class="glyphicon glyphicon-shopping-cart" aria-hidden="true" 
+                            type="submit" name="quantity" ></span>Add to cart</button>
+                            </form>
+                            <h6><a href="#"><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> Add to wish list</a></h6>
+                        </div>                                        
+                    </div>                              
+                    
+            </div>        
+        </body>
+    </html>
+    
 {% endblock %}

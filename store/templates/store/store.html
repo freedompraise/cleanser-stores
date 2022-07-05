@@ -9,10 +9,11 @@
          {% for product in all %}
             <div class="col-sm-6 col-lg-3 mb-2-6">
                 <div class="card-wrapper mb-4">
+                    <a href="{% url 'product' product.id %}">
                     <div class="card-img"><img src="{{product.avatar.url}}" alt="..."/></div>
                     <div class="card-body">
                         <div>
-                            <a href="{% url 'product' product.id %}"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                        <i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
                         </div>
                     </div>
                 </div>
