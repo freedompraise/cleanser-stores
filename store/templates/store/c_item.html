@@ -10,21 +10,19 @@
                 </div>
             </a>
         </div>
-        <div class="px-4 my-3 text-center">
+        <div class="px-3 my-3 text-center">
             <div class="cart-item-label">Quantity</div>
             <div class="count-input">
                 <input type="number" value="{{product.order}}" min=1 class="form-control" name="{{product}}"/>
             </div>
         </div>
-        <div class="px-4 my-3 text-center">
+        <div class="px-3 my-3 text-center">
             <div class="cart-item-label">Total</div><span class="text-xl font-weight-medium">${{product.total}}</span>
         </div>
-        <div class="px-4 my-3 text-center">
+        <div class="px-3 my-3 text-center">
             <div class="cart-item-label">Discount</div><span class="text-xl font-weight-medium">${{product.discount}}</span>
         </div>
-        <div class="px-4 my-3 text-center">
-            <div class="cart-item-label"><button name="{% product.id %}">&#x2718;</button></div>
-        </div>
+    
     </div>
     <hr>
     {% endfor %}

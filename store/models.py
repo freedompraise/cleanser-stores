@@ -8,7 +8,7 @@ class Product(models.Model):
     # size = models.CharField(max_length=7, default="EU 00")
     # product_code=models
     price = models.DecimalField(max_digits=6, decimal_places=2, default=1.00)
-    discount = models.DecimalField(max_digits=6, decimal_places=2, default=1.00)
+    #discount = models.DecimalField(max_digits=6, decimal_places=2, default=1.00)
     order=models.IntegerField(default=1,null=False)
     rating=models.IntegerField(default=5)
     country_of_origin=models.CharField(max_length=50, default="Nigeria", null=True)

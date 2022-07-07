@@ -10,6 +10,19 @@ import random
 
 
 # Create your views here.
+def get_total(products):
+    total_dict={}
+    for product in products:
+        if product.order is not None:
+            product.total= int(product.order) * int(product.price)
+            product.discount = float(str(0.13 * float(product.total))[:4])
+            product.save()
+            total_dict[product.id]=product.total
+    total_int=int()
+    for value in total_dict.values():
+        total_int+=value
+    return total_int
+
 
 def store(request):
     all = Product.objects.all()
@@ -28,73 +41,38 @@ def product_page(request,pk):
             product.save()
             return redirect('cart')
         else:
-            return redirect('login-page')
+            return redirect('login')
 
     context={"product":product,'discount':discount[:4],'save':save[:4]}
     return render(request,'store/product.html',context)
 
 @login_required(login_url='login')
 def checkout(request):
-    user=request.user
-    products = user.product_set.all()
-    total_dict={}
-    discount_dict={}
-    count=int()
-
-    for item in products:
-        item.order=request.POST.get(item.name) if request.POST.get(item.name) else item.order
-        item.save
-
-
-    for product in products:
-        if product.order is not None:
-            product.total= int(product.order) * int(product.price)
-            product.discount = float(str(0.13 * float(product.total))[:4])
-            product.save()
-            total_dict[product.id]=product.total
-            discount_dict[product.id]=product.discount
-            count+=1
-
-    if request.POST.get("delete")=='delete':
-        product.customers.remove(request.user)
-        product.save()
-
-    total_int=int()
-    for value in total_dict.values():
-        total_int+=value
-        
-    discount=str(0.13*float(total_int))
-    discount=discount.split('.')
-
-    context={"products":products, "total":total_int,'discount':discount[0]+'.'+discount[1][:2],'count':count}
-    return render(request,'store/checkout.html',context)
-
-
-@login_required(login_url='login')
-def cart(request):
-    user=request.user
-    products = user.product_set.all()
-    total_dict={}
-    discount_dict={}
-    
+    products = request.user.product_set.all()
     # assigning a quantity for each item in the cart page
     for item in products:
         item.order=request.POST.get(item.name) if request.POST.get(item.name) else item.order
         item.save
 
     # calculating for total in all products by multiplying their price with quantity
-    for product in products:
-        if product.order is not None:
-            product.total= int(product.order) * int(product.price)
-            product.discount = float(str(0.13 * float(product.total))[:4])
-            product.save()
-            total_dict[product.id]=product.total
-            discount_dict[product.id]=product.discount
+    total_int = get_total(products)
+    discount=str(0.13*float(total_int))
+    discount=discount.split('.')
+    count=products.count()
+    context={"products":products, "total":total_int,'discount':discount[0]+'.'+discount[1][:2],'count':count}
+    return render(request,'store/checkout.html',context)
 
-    total_int=int()
-    for value in total_dict.values():
-        total_int+=value
-        
+
+@login_required(login_url='login')
+def cart(request):
+    products = request.user.product_set.all()
+    # assigning a quantity for each item in the cart page
+    for item in products:
+        item.order=request.POST.get(item.name) if request.POST.get(item.name) else item.order
+        item.save
+
+    # calculating for total in all products by multiplying their price with quantity
+    total_int = get_total(products)
     discount=str(0.13*float(total_int))
     discount=discount.split('.')
 
@@ -128,11 +106,11 @@ def login_page(request):
 
 def register(request):
     if request.method=="POST":
-        username=request.POST.get('username')
+        username=request.POST.get('username').split()
         email=request.POST.get('email')
         password=request.POST.get('password') 
         user=User.objects.create(
-            first_name=username,
+            first_name=username[0],
             email=email,
             password=password
         )
@@ -151,25 +129,22 @@ from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
 
 def process_payment(request):
-    products = cart.products
-    host = request.get_host()
-
+    products = request.user.product_set.all()
+    host = request.user
+    total =  get_total(products)
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
-        'amount': str(cart.total_int),
+        'amount': str(total),
         'item_name': str([product.name+'\n' for product in products]),
       #  'invoice': str([product.name+'\n' for product in Product.objects.all()])
         'currency_code': 'USD',
-        'notify_url': 'http://{}{}'.format(host,
-                                           reverse('paypal-ipn')),
-        'return_url': 'http://{}{}'.format(host,
-                                           reverse('payment-done')),
-        'cancel_return': 'http://{}{}'.format(host,
-                                              reverse('payment-cancelled')),
     }
-
+   
     form = PayPalPaymentsForm(initial=paypal_dict)
-    return render(request, 'store/payment.html', {'order': products, 'form': form,'page':'process'})
+    return render(request, 'store/payment.html', {'order': products,
+     'form': form,
+     'page':'process',
+     'total':total})
 
 
 @csrf_exempt
