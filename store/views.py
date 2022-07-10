@@ -29,15 +29,15 @@ def store(request):
     context={'all':all}
     return render(request,'store/store.html',context)
 
-# @login_required(login_url='login')
 def product_page(request,pk):
     product=Product.objects.get(id=pk)
+    products = request.user.product_set.all()
     discount=str(0.83*float(product.price))
     save=str(0.17*float(product.price))
     if request.method=='POST':
         if request.user.is_authenticated:
             product.customers.add(request.user)
-            product.order=request.POST.get('quantity') if request.POST.get('qauntity') else product.order
+            product.order=request.POST.get('quantity') if request.POST.get('quantity') else product.order
             product.save()
             return redirect('cart')
         else:
@@ -79,6 +79,7 @@ def cart(request):
     if request.POST.get("delete")=='delete':
         product.customers.remove(request.user)
         product.save()
+        #! WORK ON THE DELETE BUTTONS USING THE ID'S OF EACH ITEM
 
     context={"products":products, "total":total_int,'discount':discount[0]+'.'+discount[1][:2]}
     return render(request,'store/cart.html',context) 
@@ -105,21 +106,15 @@ def login_page(request):
 
 
 def register(request):
+    form = UserForm
     if request.method=="POST":
-        username=request.POST.get('username').split()
-        email=request.POST.get('email')
-        password=request.POST.get('password') 
-        user=User.objects.create(
-            first_name=username[0],
-            email=email,
-            password=password
-        )
+        UserForm.authenticate # register using usercreation form
         if user is not None:
             auth_login(request, user)
             return redirect('store')
         else:
-            return messages.error(reques, "error occuered in registration")
-    context={'page':'register'}
+            return messages.error(request, "error occurred in registration")
+    context={'form':form}
     return render(request,'store/register.html')
 
     # PAYPAL

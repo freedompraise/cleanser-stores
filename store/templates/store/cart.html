@@ -5,7 +5,7 @@
 
 {% if products %}
 <h2 style="position:relative; right:-50px;">Shopping Cart</h2>
-<div class="container pb-3 mb-1" style="max-width:700px; margin-bottom:200px;">
+<div class="container pb-3 mb-1" style="max-width:700px; margin-bottom:50px;">
 
     <!-- Cart Item-->
     <form method="POST" action="">
@@ -39,7 +39,7 @@
     <hr>
     {% endfor %}
     <!-- Coupon + Subtotal-->
-        <div class="py-2" style="position:relative; right:-310px;" ><h5>Subtotal:</h5>
+        <div class="py-2" style="position:relative; right:-310px; margin-bottom:0px;" ><h5>Subtotal:</h5>
         <strong class="d-inline-block align-middle font-weight-heavy">${{total}}</strong></div>
         <input type ="submit" class="btn btn-style-1 
         btn-block btn-primary" value="Update Cart" 
@@ -51,7 +51,7 @@
         <div class="col-sm-6 mb-3">
             <div class="col-sm-6 mb-3" style="position:relative; right:-600px;">
                 <a class="btn btn-style-1 btn-secondary " href="{% url 'checkout' %}">
-                    <i class="fe-icon-credit-card"></i>&nbsp;Continue to Checkout</a>
+                    <i class="btn btn-outline-success my-2 my-sm-0"></i>&nbsp;Continue to Checkout</a>
                 </div>
         </div>
     </div>

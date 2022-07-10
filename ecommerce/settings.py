@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'store',
     # 'avatar',
     'rest_framework',
-    # 'corsheaders',
+    'corsheaders',
     'paypal.standard.ipn'
 
 
