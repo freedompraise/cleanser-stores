@@ -8,7 +8,7 @@
             <div class="col-12">
                 <div class="d-flex flex-column">
                     <p class="text mb-1">Person Name</p>
-                    <input class="form-control mb-3" type="text" placeholder="Name" value="Barry Allen">
+                    <input class="form-control mb-3" type="text" placeholder="Name" value="{{request.user.first_name}} {{request.user.last_name}}">
                 </div>
             </div>
             <div class="col-12">

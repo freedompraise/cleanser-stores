@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Product
 from django.contrib import messages
-from .forms import ProductForm, UserForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,logout
 from django.contrib.auth import login as auth_login
@@ -31,7 +30,7 @@ def store(request):
 
 def product_page(request,pk):
     product=Product.objects.get(id=pk)
-    products = request.user.product_set.all()
+    # products = request.user.product_set.all() if request.user.is_authenticated else ''
     discount=str(0.83*float(product.price))
     save=str(0.17*float(product.price))
     if request.method=='POST':
@@ -49,11 +48,6 @@ def product_page(request,pk):
 @login_required(login_url='login')
 def checkout(request):
     products = request.user.product_set.all()
-    # assigning a quantity for each item in the cart page
-    for item in products:
-        item.order=request.POST.get(item.name) if request.POST.get(item.name) else item.order
-        item.save
-
     # calculating for total in all products by multiplying their price with quantity
     total_int = get_total(products)
     discount=str(0.13*float(total_int))
@@ -69,51 +63,46 @@ def cart(request):
     # assigning a quantity for each item in the cart page
     for item in products:
         item.order=request.POST.get(item.name) if request.POST.get(item.name) else item.order
-        item.save
+        if request.POST.get(str(item.id)) == 'delete':
+            # HOW TO IDENTIFY THE DELETE
+            item.customers.remove(request.user)
+        item.save()
 
     # calculating for total in all products by multiplying their price with quantity
     total_int = get_total(products)
     discount=str(0.13*float(total_int))
     discount=discount.split('.')
 
-    if request.POST.get("delete")=='delete':
-        product.customers.remove(request.user)
-        product.save()
-        #! WORK ON THE DELETE BUTTONS USING THE ID'S OF EACH ITEM
-
     context={"products":products, "total":total_int,'discount':discount[0]+'.'+discount[1][:2]}
     return render(request,'store/cart.html',context) 
 
 
 def login_page(request):
-    if request.method=='POST':
-        email=request.POST.get('email')
-        password=request.POST.get('password')
-        
-        try:
-            user=User.objects.get(email=email)
-        except:
-            messages.error(request,'User not registered')
-            
-        user=authenticate(request, email=email, password=password)
+    email=request.POST.get('email')
+    password=request.POST.get('password')
+    try:
+        user=User.objects.get(email=email)
         if user is not None:
             auth_login(request, user)
             return redirect('store')
-        else:  
-            messages.error(request,'Username or Password not correct')
+    except:  
+        messages.error(request,'Username or Password not correct')
             
     return render(request,'store/login.html')
 
 
+
 def register(request):
-    form = UserForm
-    if request.method=="POST":
-        UserForm.authenticate # register using usercreation form
-        if user is not None:
-            auth_login(request, user)
-            return redirect('store')
-        else:
-            return messages.error(request, "error occurred in registration")
+    user=User.objects.create(
+    username=request.POST.get('username'),
+    email=request.POST.get('email'),
+    password=request.POST.get('email')
+    )
+    if user is not None:
+        auth_login(request, user)
+        return redirect('store')
+    else:
+        return messages.error(request, "error occurred in registration")
     context={'form':form}
     return render(request,'store/register.html')
 
@@ -125,7 +114,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 def process_payment(request):
     products = request.user.product_set.all()
-    host = request.user
+    # host = request.user
     total =  get_total(products)
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,

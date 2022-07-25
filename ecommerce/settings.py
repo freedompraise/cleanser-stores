@@ -44,8 +44,14 @@ INSTALLED_APPS = [
     # 'avatar',
     'rest_framework',
     'corsheaders',
-    'paypal.standard.ipn'
+    'paypal.standard.ipn',
 
+    #GOOGLE AUTHENTICATION
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github', # for Github OAuth 2.0
+    # ...
 
     
     # 'store.apps.StoreConfig',
@@ -68,7 +74,7 @@ ROOT_URLCONF = 'ecommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        "DIRS": [str(BASE_DIR.joinpath("templates"))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,3 +152,17 @@ PAYPAL_TEST = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS=True
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = 'store'
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# Additional configuration settings
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
