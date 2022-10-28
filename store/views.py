@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Product
 from django.contrib import messages
-from .forms import ProductForm, UserForm
+from .forms import ProductForm, NewUserForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,logout
 from django.contrib.auth import login as auth_login
@@ -70,7 +70,7 @@ def checkout(request):
     return render(request,'store/checkout.html',context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='login-page')
 def cart(request):
     user=request.user
     products = user.product_set.all()
@@ -131,7 +131,7 @@ def register(request):
         username=request.POST.get('username')
         email=request.POST.get('email')
         password=request.POST.get('password') 
-        user=User.objects.create(
+        user=User.objects.update_or_create(
             first_name=username,
             email=email,
             password=password
@@ -140,7 +140,7 @@ def register(request):
             auth_login(request, user)
             return redirect('store')
         else:
-            return messages.error(reques, "error occuered in registration")
+            return messages.error(request, "error occuered in registration")
     context={'page':'register'}
     return render(request,'store/register.html')
 
