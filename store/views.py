@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,logout
+from django.contrib.auth import authenticate,logout, get_user_model
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -138,9 +138,12 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect(request.META.get('store', reverse('store')))
             form.save()
-            auth_login(request,user)
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password = password)
+            auth_login(request, user)
+            return HttpResponseRedirect(request.META.get('store', reverse('store')))
     else:
         form = RegistrationForm()
     return render(request,'store/register.html', {'form':form})
@@ -149,9 +152,9 @@ def register(request):
     
 
 
-
 def process_payment(request):
-    products = cart.products
+    user = get_user_model()
+    products = user.objects_set.all()
     host = request.get_host()
 
     paypal_dict = {
