@@ -1,37 +1,28 @@
 {% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LoginSignup</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/user_form.css' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
-</head>
 
 <div class="container bootstrap snippets bootdey">
     <div class="row login-page"> 
         <div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4"> 
-    		<img src="{% static 'images/cart.jpg' %}" class="user-avatar img-thumbnail"> 
-    		<h1>ShopCleaner.com</h1> 
-    		<form role="form" method="POST" action="" class="ng-pristine ng-valid"> 
-                {% csrf_token %}
-    			<div class="form-content"> 
-    				<div class="form-group"> 
-    					<input type="text" class="form-control input-underline input-lg" placeholder="Email" name='email'> 
-    				</div> 
-    				<div class="form-group"> 
-    					<input type="password" class="form-control input-underline input-lg" placeholder="Password" name='password'> 
-    				</div> 
-    			</div> 
-    		  <input class="btn btn-primary" value="Sign In" type="submit"/> 
-              <article class="register ">
-              <p class="">Haven't signed up yet? <a href="{% url 'register' %}">Register</a></p>
-              </article>
-              
-    		</form> 
+
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags%} class="{{message.tags}} "{% endif %>{{message}}} </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          
+    		<h1>Login to ShopCleaner.com</h1> 
+            <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Log in</button>
+          </form>
+            <article class="register ">
+                <p class="">Haven't signed up yet? <a href="{% url 'register' %}">Register</a></p>
+                </article>
     	</div> 
     </div>
 </div>
-

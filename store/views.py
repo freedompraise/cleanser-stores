@@ -1,11 +1,19 @@
+#DJANGO
 from django.shortcuts import render, redirect
-from .models import Product
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import RegistrationForm
 from django.contrib.auth import authenticate,logout
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import HttpResponseRedirect , reverse
+#APP
+from .forms import RegistrationForm, LoginForm
+from .models import Product
+#PAYPAL
+from paypal.standard.forms import PayPalPaymentsForm
+
 import random
 
 
@@ -28,7 +36,7 @@ def product_page(request,pk):
             product.save()
             return redirect('cart')
         else:
-            return redirect('login-page')
+            return redirect('login')
 
     context={"product":product,'discount':discount[:4],'save':save[:4]}
     return render(request,'store/product.html',context)
@@ -107,40 +115,40 @@ def cart(request):
 
 
 def login_page(request):
-    if request.method=='POST':
-        email=request.POST.get('email')
-        password=request.POST.get('password')
-        
-        try:
-            user=User.objects.get(email=email)
-        except:
-            messages.error(request,'User not registered')
-            
-        user=authenticate(request, email=email, password=password)
-        if user is not None:
-            auth_login(request, user)
-            return redirect('store')
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                auth_login(request, user)
+                messages.success(request, 'Welcome back! You are now logged in.')
+                return redirect(request.META.get('HTTP_REFERER','store'))
+            else:
+                messages.error(request,'Invalid Login credentials')
+                return redirect('login')
         else:  
-            messages.error(request,'Username or Password not correct')
+            form =  LoginForm()
             
-    return render(request,'store/login.html')
+    return render(request,'store/login.html',{'form':LoginForm})
 
 
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
+            return HttpResponseRedirect(request.META.get('store', reverse('store')))
             form.save()
-            return redirect('login')
+            auth_login(request,user)
     else:
         form = RegistrationForm()
     return render(request,'store/register.html', {'form':form})
 
     # PAYPAL
     
-from django.conf import settings
-from paypal.standard.forms import PayPalPaymentsForm
-from django.views.decorators.csrf import csrf_exempt
+
+
 
 def process_payment(request):
     products = cart.products

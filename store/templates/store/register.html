@@ -1,16 +1,6 @@
-{% extends 'main.html' %}
 {% load static %}
 
 {% block content %}
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LoginSignup</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/user_form.css' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
-</head>
 
 <div class="container bootstrap snippets bootdey">
 <div class="row login-page"> 
@@ -26,7 +16,7 @@
         </form>
 
         <article class="register ">
-            <p class="">Already Registered? <a href="{% url 'login-page' %}">Login</a></p>
+            <p class="">Already Registered? <a href="{% url 'login' %}">Login</a></p>
             </article>
     </div> 
 </div>
