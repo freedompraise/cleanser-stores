@@ -6,8 +6,8 @@
   </head>
 <div class="row login-page"> 
     <div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4"> 
-        <img src="{% static 'images/cart.jpg' %}" class="cart-image"> 
-
+        <div class= "form-container">
+             <img src="{% static 'images/cart.jpg' %}" class="cart-image"> 
         <form method="post">
             <h2> Welcome to ShopCleaner.com</h2> 
             <h3>Register</h3>
@@ -19,7 +19,7 @@
             <p class="">Already Registered? <a href="{% url 'login' %}">Login</a></p>
             </article>
         </form>
-
+    </div>
     </div> 
 </div>
 {% endblock %}

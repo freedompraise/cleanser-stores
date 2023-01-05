@@ -14,7 +14,7 @@ from .models import Product
 #PAYPAL
 from paypal.standard.forms import PayPalPaymentsForm
 
-import random
+from random import sample
 
 
 # Create your views here.
@@ -124,7 +124,7 @@ def login_page(request):
             if user is not None:
                 auth_login(request, user)
                 messages.success(request, 'Welcome back! You are now logged in.')
-                return redirect(request.META.get('HTTP_REFERER','store'))
+                return HttpResponseRedirect(request.META.get('store', reverse('store')))
             else:
                 messages.error(request,'Invalid Login credentials')
                 return redirect('login')

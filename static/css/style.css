@@ -61,12 +61,26 @@ body {
     color: #000099;
   }
 
-  /* style the cart image */
-.cart-image {
+/* style the form container */
+.form-container {
+  position: relative;
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #FFFFCC;
+  border: 1px solid #000099;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+/* style the cart image */
+.form-container .cart-image {
   position: absolute;
-  top: 50;
-  right: 1000;
+  top: 0;
+  right: 0;
   width: 50px;
   height: 50px;
   background: url(/static/images/cart.png) no-repeat;
 }
+
+
