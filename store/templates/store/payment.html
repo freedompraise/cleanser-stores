@@ -7,21 +7,15 @@
 {% block content %}
 <h4>Pay with Paypal</h4>
 {{ form.render }}
-{% endblock %}
 
 
-{% elif page == 'done' %}
-
-{% block content %}
+{% if page == 'done' %}
 
     <p>Payment done.</p>
 
-{% endblock %}
-
 {% else %}
-
-{% block content %}
-
     <p>Payment cancelled.</p>
+    
+    {% endif %}
 
 {% endblock %}

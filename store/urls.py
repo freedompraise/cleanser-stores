@@ -10,5 +10,5 @@ urlpatterns=[
     path('product/<str:pk>/', views.product_page,name='product'),
     path('payment/',views.process_payment,name='process-payment'),
     path('payment-done/', views.payment_done, name = 'payment-done'),
-    path('payment_cancelled/',views.payment_cancelled,name='paymnet-cancelled'),
+    path('payment_cancelled/',views.payment_cancelled,name='payment-cancelled'),
 ]

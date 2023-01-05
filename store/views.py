@@ -123,13 +123,14 @@ def register(request):
 
 
 def process_payment(request):
-    user = get_user_model()
-    products = user.objects_set.all()
+    user = request.user
+    products = user.product_set.all()
+    total_int = get_total(request, products)
     host = request.get_host()
 
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
-        'amount': str(cart.total_int),
+        'amount': str(total_int),
         'item_name': str([product.name+'\n' for product in products]),
       #  'invoice': str([product.name+'\n' for product in Product.objects.all()])
         'currency_code': 'USD',
