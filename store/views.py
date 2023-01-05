@@ -74,14 +74,13 @@ def checkout(request):
 def cart(request):
     user=request.user
     products = user.product_set.all()
-    total_dict={}
-    discount_dict={}
+    total_int = get_total(request, products)
 
     if request.POST.get("delete")=='delete':
         product.customers.remove(request.user)
         product.save()
 
-    context={"products":products, "total":total_int,'discount':discount[0]+'.'+discount[1][:2]}
+    context={"products":products, "total":total_int}
     return render(request,'store/cart.html',context) 
 
 
