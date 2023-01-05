@@ -45,6 +45,8 @@ def product_page(request,pk):
 def checkout(request):
     user=request.user
     products = user.product_set.all()
+    all_products = list(Product.objects.all())
+    random_objects = sample(all_products, 2)
     total_dict={}
     discount_dict={}
     count=int()
@@ -74,7 +76,7 @@ def checkout(request):
     discount=str(0.13*float(total_int))
     discount=discount.split('.')
 
-    context={"products":products, "total":total_int,'discount':discount[0]+'.'+discount[1][:2],'count':count}
+    context={"products":products, "total":total_int,'discount':discount[0]+'.'+discount[1][:2],'count':count, 'random_products':random_objects}
     return render(request,'store/checkout.html',context)
 
 

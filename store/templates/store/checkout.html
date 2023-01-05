@@ -54,7 +54,7 @@
                     </span>
                 </div>
             </div>
-
+{% comment %} 
             <div class="ibox">
                 <div class="ibox-content">
 
@@ -62,6 +62,7 @@
                     Other products you may be interested in
                     </p>
                     <hr>
+                      {% for item in all_products %}
                     <div>
                         <a href="#" class="product-name"> Product 1</a>
                         <div class="small m-t-xs">
@@ -73,17 +74,9 @@
                         </div>
                     </div>
                     <hr>
-                    <div>
-                        <a href="#" class="product-name"> Product 2</a>
-                        <div class="small m-t-xs">
-                            Many desktop publishing packages and web page editors now.
-                        </div>
-                        <div class="m-t text-righ">
-
-                            <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
-                        </div>
+                    {% endfor %}
                     </div>
-                </div>
+                </div> {% endcomment %}
             </div>
         </div>
     </div>
