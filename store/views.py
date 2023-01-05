@@ -18,6 +18,18 @@ from random import sample
 
 
 # Create your views here.
+def get_total(request,products):
+    total_int = int()
+    # calculating for total in all products by multiplying their price with quantity
+    for product in products:
+        product.discount = float(str(0.13 * float(product.price))[:4])
+        total_int += product.price        
+        
+        # assigning a quantity for each item in the cart page
+        product.order=request.POST.get(product.name) if request.POST.get(product.name) else product.order
+        product.save()
+
+    return total_int
 
 def store(request):
     all = Product.objects.all()
@@ -45,38 +57,16 @@ def product_page(request,pk):
 def checkout(request):
     user=request.user
     products = user.product_set.all()
+    count = user.product_set.all().count()
     all_products = list(Product.objects.all())
     random_objects = sample(all_products, 2)
-    total_dict={}
-    discount_dict={}
-    count=int()
-
-    for item in products:
-        item.order=request.POST.get(item.name) if request.POST.get(item.name) else item.order
-        item.save
-
-
-    for product in products:
-        if product.order is not None:
-            product.total= int(product.order) * int(product.price)
-            product.discount = float(str(0.13 * float(product.total))[:4])
-            product.save()
-            total_dict[product.id]=product.total
-            discount_dict[product.id]=product.discount
-            count+=1
+    total_int= get_total(request,products)
 
     if request.POST.get("delete")=='delete':
         product.customers.remove(request.user)
         product.save()
 
-    total_int=int()
-    for value in total_dict.values():
-        total_int+=value
-        
-    discount=str(0.13*float(total_int))
-    discount=discount.split('.')
-
-    context={"products":products, "total":total_int,'discount':discount[0]+'.'+discount[1][:2],'count':count, 'random_products':random_objects}
+    context={"products":products, "total":total_int,'count':count, 'random_products':random_objects}
     return render(request,'store/checkout.html',context)
 
 
@@ -86,27 +76,6 @@ def cart(request):
     products = user.product_set.all()
     total_dict={}
     discount_dict={}
-    
-    # assigning a quantity for each item in the cart page
-    for item in products:
-        item.order=request.POST.get(item.name) if request.POST.get(item.name) else item.order
-        item.save
-
-    # calculating for total in all products by multiplying their price with quantity
-    for product in products:
-        if product.order is not None:
-            product.total= int(product.order) * int(product.price)
-            product.discount = float(str(0.13 * float(product.total))[:4])
-            product.save()
-            total_dict[product.id]=product.total
-            discount_dict[product.id]=product.discount
-
-    total_int=int()
-    for value in total_dict.values():
-        total_int+=value
-        
-    discount=str(0.13*float(total_int))
-    discount=discount.split('.')
 
     if request.POST.get("delete")=='delete':
         product.customers.remove(request.user)
