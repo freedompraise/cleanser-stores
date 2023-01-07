@@ -31,8 +31,6 @@ def get_total(request,products):
         # assigning a quantity for each item in the cart page
         product.order=request.POST.get(product.name) if request.POST.get(product.name) else product.order
       
-     
-
     return total_int
 
 def store(request):
@@ -125,6 +123,15 @@ def register(request):
     # PAYPAL
     
 
+def product_delete(request, product_id):
+  # get the product object
+  product = Product.objects.get(id=pk)
+
+  # delete the product
+  product.delete()
+
+  # redirect to the product list page
+  return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('cart')))
 
 def process_payment(request):
     user = request.user

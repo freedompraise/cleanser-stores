@@ -1,67 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-<style>
-   body {
-      font-family: Arial, Helvetica, sans-serif;
-   }
-   .modal {
-      text-align: center;
-      display: none;
-      position: fixed;
-      z-index: 1;
-      padding-top: 100px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
-   }
 
-
-   .close {
-      border-radius: 25px;
-      background: 	#000080;
-      padding: 20px;
-      width: 170px;
-      height: 150px;
-   }
-   .close:hover, .close:focus {
-      color: #ff1010;
-      cursor: pointer;
-   }
-   .close p{
-      color:#f5bd1f
-   }
-   .modalContent button {
-      border: none;
-      border-radius: 4px;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 10px;
-   }
-   .del {
-      background-color: rgb(255, 65, 65);
-   }
-   .del:hover {
-      background-color: rgb(255, 7, 7);
-   }
-   .cancel:hover {
-      background-color: rgb(167, 167, 167);
-   }
-</style>
 <body>
-<h1>Delete {{product}} from cart?</h1>
-<form action="" method="POST">
-    {% csrf_token %}
-<article>
-<input class="del" type="submit" value="delete" name="delete"/>
-<a class="cancel " href="{% url 'cart' %}"><p>Back to Cart</p></a>
-</article>
-</form>
+{% load formtags %}
 
-</div>
+<!-- create a form to delete the product -->
+<form method="POST" action="{% url 'product_delete' product.id %}">
+  <!-- include a hidden input field with the product's ID -->
+  {% csrf_token %}
+    <!-- display the product's image -->
+    <img src="{{ product.avatar.url }}" alt="Product image">
+  <!-- display the product's name and price -->
+  <h1>{{ product.name }}</h1>
+  <p>{{ product.price }}</p>
+  <!-- include a submit button to delete the product -->
+  <input type="submit" value="Delete Product">
+</form>
 </body>
 </html>
