@@ -23,13 +23,12 @@ def get_total(request,products):
     # calculating for total in all products by multiplying their price with quantity
     for product in products:
         product.discount = float(str(0.13 * float(product.price))[:4])
-        # determining total - the product of price and the quantity of product
-        product.total = float(str(float(product.order) * float(product.price))[:4])
-        product.save()
-        total_int += product.total
-        
         # assigning a quantity for each item in the cart page
         product.order=request.POST.get(product.name) if request.POST.get(product.name) else product.order
+        # determining total - the product of price and the quantity of product
+        product.total = float(str(float(product.order) * float(product.price))[:4])
+        total_int += product.total
+        product.save()
       
     return total_int
 
