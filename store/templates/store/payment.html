@@ -3,10 +3,9 @@
 
 {% if page == 'process'}
 {% block title %}Make Payment {% endblock %}
-
+<p>Payment cancelled.</p>
 {% block content %}
-<h4>Pay with Paypal</h4>
-{{ form.render }}
+
 
 
 {% if page == 'done' %}
@@ -14,8 +13,10 @@
     <p>Payment done.</p>
 
 {% else %}
-    <p>Payment cancelled.</p>
-    
+   <div class ="container pb-3 mb-1" style=" margin-bottom:200px; right: 5000px;">
+    <h4>Pay with Paypal</h4>
+{{ form.render }}
+   </div>
     {% endif %}
 
 {% endblock %}

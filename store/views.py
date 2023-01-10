@@ -61,11 +61,8 @@ def checkout(request):
     count = user.product_set.all().count()
     all_products = list(Product.objects.all())
     random_objects = sample(all_products, 2)
-    total_int= get_total(request,products)
+    total_int= get_total(request,products) 
 
-    if request.POST.get("delete")=='delete':
-        product.customers.remove(request.user)
-        product.save()
 
     context={"products":products, "total":total_int,'count':count, 'random_products':random_objects}
     return render(request,'store/checkout.html',context)
@@ -77,13 +74,19 @@ def cart(request):
     products = user.product_set.all()
     total_int = get_total(request, products)
 
-    # if request.POST.get()=='delete':
-    #     product.customers.remove(request.user)
-    #     product.save()
-
     context={"products":products, "total":total_int}
     return render(request,'store/cart.html',context) 
 
+
+def product_delete(request, pk):
+  # get the product object
+    product = Product.objects.get(id=pk)
+    user = request.user
+  # delete the product
+    product.customers.remove(user)
+    product.save()
+  # redirect to the product list page
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('cart')))
 
 def login_page(request):
     if request.method == 'POST':
@@ -120,18 +123,6 @@ def register(request):
     return render(request,'store/register.html', {'form':form})
 
     # PAYPAL
-    
-
-def product_delete(request, pk):
-  # get the product object
-    product = Product.objects.get(id=pk)
-    user = request.user
-
-  # delete the product
-    product.customers.remove(user)
-    product.save()
-  # redirect to the product list page
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('cart')))
 
 def process_payment(request):
     user = request.user
