@@ -49,7 +49,6 @@
         <div class="px-4 my-3 text-center">
             <div class="cart-item-label">Discount</div><span class="text-xl font-weight-medium">${{product.discount}}</span>
         </div>
-            <!-- delete button -->
         <div class="px-4 my-3 text-center">
             <div class="cart-item-label">
                 <a href="{% url 'delete' product.id %}">&#x2718;</a>
@@ -58,7 +57,7 @@
     </div>
     <hr>
     {% endfor %}
-    <!-- Coupon + Subtotal -->
+    <!-- Coupon + Subtotal-->
         <div class="py-2" style="position:relative; right:-310px;" ><h5>Subtotal:</h5>
         <strong class="d-inline-block align-middle font-weight-heavy">${{total}}</strong></div>
     </div>
@@ -87,7 +86,7 @@
                    <a href="{% url 'store' %}"> <button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3" href="{% url 'store' %}">Back to shopping</button> </a>
 								</div>
 						</div>
-				</div> -->
+				</div>
 				
     {% endif %}
 {% endblock %}
