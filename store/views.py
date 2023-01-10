@@ -78,9 +78,9 @@ def cart(request):
     products = user.product_set.all()
     total_int = get_total(request, products)
 
-    if request.POST.get("delete")=='delete':
-        product.customers.remove(request.user)
-        product.save()
+    # if request.POST.get()=='delete':
+    #     product.customers.remove(request.user)
+    #     product.save()
 
     context={"products":products, "total":total_int}
     return render(request,'store/cart.html',context) 
@@ -123,15 +123,16 @@ def register(request):
     # PAYPAL
     
 
-def product_delete(request, product_id):
+def product_delete(request, pk):
   # get the product object
-  product = Product.objects.get(id=pk)
+    product = Product.objects.get(id=pk)
+    user = request.user
 
   # delete the product
-  product.delete()
-
+    product.customers.remove(user)
+    product.save()
   # redirect to the product list page
-  return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('cart')))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('cart')))
 
 def process_payment(request):
     user = request.user

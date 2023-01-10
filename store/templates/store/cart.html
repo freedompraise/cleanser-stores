@@ -2,6 +2,23 @@
 {% load static %}
 {% block content %}
 
+{% comment %} <script>
+    function deleteFromCart(productId) {
+      $.ajax({
+        url: "{% url 'delete-page' product.id %}",  // The URL of the view that handles the deletion
+        type: "POST",  // Use a POST request
+        data: {  // Send the product ID as data
+          "product_id": productId
+        },
+        success: function(response) {  // When the request is successful, update the cart
+          updateCart();
+        },
+        error: function(xhr, textStatus, errorThrown) {  // If there is an error, show an alert
+          alert("Error deleting from cart: " + errorThrown);
+        }
+      });
+    }
+  </script> {% endcomment %}
 
 {% if products %}
 <h2 style="position:relative; right:-40px;">Shopping Cart</h2>
@@ -34,7 +51,9 @@
         </div>
             <!-- delete button -->
         <div class="px-4 my-3 text-center">
-            <div class="cart-item-label"><button type="submit" >&#x2718;</button></div>
+            <div class="cart-item-label">
+                <a href="{% url 'delete' product.id %}">&#x2718;</a>
+            </div>
         </div>
     </div>
     <hr>
@@ -57,7 +76,6 @@
       {% else %}
 
     			 <div class="row">
-					< class="col-md-12">
 							<div class="cards">
 						<div class="card-header">
 						</div>
