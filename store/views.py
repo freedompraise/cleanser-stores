@@ -61,7 +61,7 @@ def checkout(request):
     count = user.product_set.all().count()
     all_products = list(Product.objects.all())
     random_objects = sample(all_products, 2)
-    total_int= get_total(request,products) 
+    total_int= round(get_total(request,products),2)
 
 
     context={"products":products, "total":total_int,'count':count, 'random_products':random_objects}
@@ -72,7 +72,7 @@ def checkout(request):
 def cart(request):
     user=request.user
     products = user.product_set.all()
-    total_int = get_total(request, products)
+    total_int = round(get_total(request, products),3)
 
     context={"products":products, "total":total_int}
     return render(request,'store/cart.html',context) 

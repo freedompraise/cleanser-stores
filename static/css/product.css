@@ -11,8 +11,8 @@ body {
   align-items: center;
   max-width: 800px;
   margin: 0 auto;
-  background-color: #FFFFCC;
-  border: 1px solid #000099;
+  background-color:  #feb000;
+  border: 1px solid #1e1ec0;
   border-radius: 5px;
   padding: 20px;
 }
@@ -33,14 +33,14 @@ body {
 
 .product-page .product-price {
   font-size: 18px;
-  color: #000099;
+  color: #1e1ec0;
   margin: 10px 0;
 }
 
 /* style the product rating */
 .product-page .product-rating {
   font-size: 18px;
-  color: #000099;
+  color: #1e1ec0;
   margin: 10px 0;
 }
 
@@ -51,7 +51,7 @@ body {
 /* style the product description */
 .product-page .product-description {
   font-size: 18px;
-  color: #000099;
+  color: #1e1ec0;
   margin: 10px 0;
   text-align: left;
 }
@@ -67,5 +67,5 @@ body {
 .product-page .product-form label,
 .product-page .product-form input[type="number"] {
   font-size: 18px;
-  color: #000099;
+  color: #1e1ec0;
 }
