@@ -1,4 +1,4 @@
-<h1>cleanser-stores</h1>
+<h1>Cleanser Stores</h1>
 
 
 <img src="icon.png"/>
