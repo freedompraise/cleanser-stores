@@ -1,10 +1,12 @@
 body {
+    margin-top: 150px;
     background-color: white;
     color: royalblue;
     font-family: Arial, sans-serif;
   }
   form {
     max-width: 400px;
+    max-height: fit-content;
     margin: 0 auto;
     padding: 20px;
     background-color: goldenyellow;
