@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import HttpResponseRedirect , reverse
+from django.contrib.auth.forms import AuthenticationForm
 #APP
 from .models import Product
 #PAYPAL
@@ -89,10 +90,11 @@ def product_delete(request, pk):
 
 def login_page(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST)
+        form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            # Authenticate the user with the provided email and password
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 auth_login(request, user)
@@ -101,10 +103,9 @@ def login_page(request):
             else:
                 messages.error(request,'Invalid Login credentials')
                 return redirect('login')
-        else:  
-            form =  LoginForm()
+        return redirect('login')
             
-    return render(request,'store/login.html',{'form':LoginForm})
+    return render(request,'store/login.html')
 
 
 def register(request):
@@ -114,7 +115,7 @@ def register(request):
             user, created = User.objects.get_or_create( username=username, defaults={'password': password})
             if created:
             # If the user was created, log them in and create a new cart for them
-                login(request, user)
+                auth_login(request, user)
                 return HttpResponseRedirect(request.META.get('store', reverse('store')))
             return redirect('register')
     return render(request,'store/register.html')
