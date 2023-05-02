@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'store',
     # 'avatar',
-    'rest_framework',
+    # 'rest_framework',
     # 'corsheaders',
     'paypal.standard.ipn'
 

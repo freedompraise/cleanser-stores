@@ -1,6 +1,5 @@
 <h1>Cleanser Stores</h1>
 
-
 <img src="icon.png"/>
 <p>A shopping platform for an imaginary store for cleaning agents</p>
 
@@ -16,7 +15,7 @@
 
 ## Installation
 
-**1.Clone Rpository $ Install Packages**
+**1.Clone Repository $ Install Packages**
 ```sh
 git clone https:github.com/freedompraise/cleanser-stores.git
 pip install -r requirements.txt
