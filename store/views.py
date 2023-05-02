@@ -9,7 +9,6 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import HttpResponseRedirect , reverse
 #APP
-from .forms import RegistrationForm, LoginForm
 from .models import Product
 #PAYPAL
 from paypal.standard.forms import PayPalPaymentsForm
@@ -110,17 +109,15 @@ def login_page(request):
 
 def register(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password = password)
-            auth_login(request, user)
-            return HttpResponseRedirect(request.META.get('store', reverse('store')))
-    else:
-        form = RegistrationForm()
-    return render(request,'store/register.html', {'form':form})
+            username = request.POST['username']        
+            password = request.POST['password']
+            user, created = User.objects.get_or_create( username=username, defaults={'password': password})
+            if created:
+            # If the user was created, log them in and create a new cart for them
+                login(request, user)
+                return HttpResponseRedirect(request.META.get('store', reverse('store')))
+            return redirect('register')
+    return render(request,'store/register.html')
 
     # PAYPAL
 
