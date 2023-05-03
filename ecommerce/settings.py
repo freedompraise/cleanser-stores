@@ -8,11 +8,11 @@ mimetypes.add_type("text/css", ".css", True)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY')
+DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
 
-DEBUG = False
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
-ALLOWED_HOSTS = ['*']
+APPEND_SLASH=False
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,7 +40,7 @@ ROOT_URLCONF = 'ecommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -56,14 +56,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('POSTGRES_DB'),
-        'USER': config('POSTGRES_USER'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': config('DATABASE_URL'),
-        'PORT': config('DATABASE_PORT', default='5432'),
-    }
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600),
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -90,13 +83,34 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+MEDIA_URL = '/images/'
+MEDIA_ROOT='BASE_DIR/"static/images"'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 PAYPAL_RECEIVER_EMAIL = config('PAYPAL_RECEIVER_EMAIL')
 
 PAYPAL_TEST = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# set SECURE_HSTS_SECONDS to a non-zero value to enable HSTS
+SECURE_HSTS_SECONDS = 315300 # or any value that you prefer
+
+# set SECURE_SSL_REDIRECT to True to enforce SSL connection
+SECURE_SSL_REDIRECT = True
+
+# set SECURE_HSTS_INCLUDE_SUBDOMAINS to True if all subdomains should be served via SSL
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+# set SECURE_HSTS_PRELOAD to True to submit your site to the browser preload list
+SECURE_HSTS_PRELOAD = True
+
+# set SESSION_COOKIE_SECURE and CSRF_COOKIE_SECURE to True to use secure-only cookies
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECRET_KEY = get_random_secret_key()
