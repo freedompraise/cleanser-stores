@@ -110,15 +110,17 @@ def login_page(request):
 
 def register(request):
     if request.method == 'POST':
-            username = request.POST['username']        
-            password = request.POST['password']
-            user, created = User.objects.get_or_create( username=username, defaults={'password': password})
-            if created:
-            # If the user was created, log them in and create a new cart for them
-                auth_login(request, user)
-                return HttpResponseRedirect(request.META.get('store', reverse('store')))
+        username = request.POST['username']        
+        password = request.POST['password']
+        try:
+            user = User.objects.get(username=username)
+            messages.error(request, 'Username already exists. Please choose a different one.')
             return redirect('register')
-    return render(request,'store/register.html')
+        except User.DoesNotExist:
+            user = User.objects.create_user(username=username, password=password)
+            auth_login(request, user)
+            return HttpResponseRedirect(request.META.get('store', reverse('store')))
+    return render(request, 'store/register.html')
 
     # PAYPAL
 

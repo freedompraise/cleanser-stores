@@ -13,9 +13,7 @@
 
   {% block content %}
   <body>
-    <form class="signup-form" method="POST">
-      
-        
+    <form class="signup-form" method="POST">    
       {% if messages %}
       <div class="alert alert-danger" role="alert" style="display: inline-block;">
           {% for message in messages %}
@@ -40,6 +38,7 @@
         <button type="submit">Sign Up</button>
       </div>
     </form>
+    
   </body>
 </html>
 

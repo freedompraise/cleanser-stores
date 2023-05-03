@@ -6,6 +6,15 @@
 <section>
     <div class="container">
         <div class="row">
+
+            {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+            
          {% for product in all %}
             <div class="col-sm-6 col-lg-3 mb-2-6">
                 <div class="card-wrapper mb-4">
