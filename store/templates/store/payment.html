@@ -1,22 +1,31 @@
 {% extends 'store/main.html' %}
+{% load static %}
 
+{% block extrahead %}
+<title>Payments - Cleanser-stores</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/payment.css' %}">
+{% endblock extrahead %}
 
-{% if page == 'process'}
-{% block title %}Make Payment {% endblock %}
-<p>Payment cancelled.</p>
 {% block content %}
+<body>
 
+    <div class="container">
 
+        {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+        {% endif %}
 
-{% if page == 'done' %}
+        <div class="jumbotron my-5 text-center">
+            <h1 class="display-4">Pay with PayPal</h1>
+            <hr class="my-4">
+           
+                {{ form.render }}
+               
+        </div>
 
-    <p>Payment done.</p>
+    </div>
 
-{% else %}
-   <div class ="container pb-3 mb-1" style=" margin-bottom:200px; right: 5000px;">
-    <h4>Pay with Paypal</h4>
-{{ form.render }}
-   </div>
-    {% endif %}
-
-{% endblock %}
+</body>
+{% endblock content %}
