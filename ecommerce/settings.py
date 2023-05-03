@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 import mimetypes
+from decouple import config
+
 mimetypes.add_type("text/css", ".css", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -137,7 +139,7 @@ STATICFILES_DIRS=[
 MEDIA_ROOT=BASE_DIR/"static/images"
 MEDIA_URL = "/images/"
 
-PAYPAL_RECEIVER_EMAIL = 'sb-8rphk18149368@business.example.com'
+PAYPAL_RECEIVER_EMAIL = config('PAYPAL_RECEIVER_EMAIL')
 
 PAYPAL_TEST = True
 # Default primary key field type
