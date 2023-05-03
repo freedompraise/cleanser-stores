@@ -15,7 +15,13 @@
   <body>
     <form class="signup-form" method="POST">
       {% if user.is_authenticated %}
-    <p>You are already logged in.</p>
+      <h4>You are already logged in. Redirecting to home page in 5 seconds...</h4>
+    </div>
+    <script>
+      setTimeout(function() {
+        window.location.href = "{% url 'store' %}";
+      }, 5000);
+    </script>
   {% else %}
     <p class="bg-white">Not signed up yet? <a href="{% url 'register' %}">Register here.</a></p>
     {% endif %}

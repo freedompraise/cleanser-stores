@@ -89,6 +89,10 @@ def product_delete(request, pk):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('cart')))
 
 def login_page(request):
+    if request.user.is_authenticated:
+        # Redirect to the home page after 5 seconds
+        return render(request, 'store/login.html', {'redirect': True})
+        
     if request.method == 'POST':
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
