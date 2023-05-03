@@ -1,7 +1,8 @@
 /* apply a royal blue and yellow color scheme to the page */
 body {
-  color: #FFFFCC;
+  color: #1e1ec0;
   text-align: center;
+  background-color: #FFFFCE;
 }
 
 /* style the product page container */
@@ -11,7 +12,7 @@ body {
   align-items: center;
   max-width: 800px;
   margin: 0 auto;
-  background-color:  #f3a20c;
+  background-color: #E0CA3C;
   border: 1px solid #1e1ec0;
   border-radius: 5px;
   padding: 20px;
@@ -29,18 +30,17 @@ body {
   font-size: 24px;
   font-weight: bold;
   margin: 10px 0;
+  color: #1e1ec0;
 }
 
 .product-page .product-price {
   font-size: 18px;
-  color: #1e1ec0;
   margin: 10px 0;
 }
 
 /* style the product rating */
 .product-page .product-rating {
   font-size: 18px;
-  color: #1e1ec0;
   margin: 10px 0;
 }
 
@@ -51,7 +51,6 @@ body {
 /* style the product description */
 .product-page .product-description {
   font-size: 18px;
-  color: #1e1ec0;
   margin: 10px 0;
   text-align: left;
 }
@@ -62,10 +61,4 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 10px 0;
-}
-
-.product-page .product-form label,
-.product-page .product-form input[type="number"] {
-  font-size: 18px;
-  color: #1e1ec0;
 }

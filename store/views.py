@@ -37,7 +37,7 @@ def store(request):
     context={'all':all}
     return render(request,'store/store.html',context)
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def product_page(request,pk):
     product=Product.objects.get(id=pk)
     discount=str(0.83*float(product.price))
@@ -48,9 +48,6 @@ def product_page(request,pk):
             product.order=request.POST.get('quantity') if request.POST.get('qauntity') else product.order
             product.save()
             return redirect('cart')
-        else:
-            return redirect('login')
-
     context={"product":product,'discount':discount[:4],'save':save[:4]}
     return render(request,'store/product.html',context)
 
@@ -92,7 +89,7 @@ def login_page(request):
     if request.user.is_authenticated:
         # Redirect to the home page after 5 seconds
         return render(request, 'store/login.html', {'redirect': True})
-        
+
     if request.method == 'POST':
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
@@ -149,6 +146,10 @@ def process_payment(request):
     }
 
     form = PayPalPaymentsForm(initial=paypal_dict)
+    for product in products:
+        product.customers.remove(user)
+        product.save()
+        # remove the product from the cart
     return render(request, 'store/payment.html', {'order': products, 'form': form})
 
 @csrf_exempt
