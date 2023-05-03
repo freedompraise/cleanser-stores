@@ -145,13 +145,12 @@ def process_payment(request):
     }
 
     form = PayPalPaymentsForm(initial=paypal_dict)
-    return render(request, 'store/payment.html', {'order': products, 'form': form,'page':'process'})
-
+    return render(request, 'store/payment.html', {'order': products, 'form': form})
 
 @csrf_exempt
 def payment_done(request):
-    return render(request, 'store/payment_done.html',{'page':'done'})
+    return render(request, 'store/payment_done.html')
 
 @csrf_exempt
 def payment_cancelled(request):
-    return render(request, 'store/payment.html',{'page':'cancelled'})
+    return render(request, 'store/payment_cancelled.html')
