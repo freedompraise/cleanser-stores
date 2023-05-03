@@ -150,7 +150,7 @@ def process_payment(request):
 
 @csrf_exempt
 def payment_done(request):
-    return render(request, 'store/payment.html',{'page':'done'})
+    return render(request, 'store/payment_done.html',{'page':'done'})
 
 @csrf_exempt
 def payment_cancelled(request):
