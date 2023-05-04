@@ -3,6 +3,7 @@ from pathlib import Path
 import os
 import dj_database_url
 from decouple import config
+from django.core.management.utils import get_random_secret_key
 
 mimetypes.add_type("text/css", ".css", True)
 
