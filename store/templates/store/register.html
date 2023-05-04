@@ -4,6 +4,7 @@
 
 {% load static %}
 
+<<<<<<< HEAD
 {% load crispy_form_tags %}
 
 <head>
@@ -35,3 +36,59 @@
     </div> 
 </div>
 </div>
+=======
+<!DOCTYPE html>
+<html>
+    {% block extrahead %}
+  <head>
+    <title>Sign Up - Cleanser-stores</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/50e0af0f47.css" crossorigin="anonymous">
+    {% endblock extrahead %}
+  </head>
+
+  {% block content %}
+  <body>
+    <form class="signup-form" method="POST">    
+      {% if messages %}
+      <div class="alert alert-danger" role="alert" style="display: inline-block;">
+          {% for message in messages %}
+              {{ message }}
+          {% endfor %}
+      </div>
+  {% endif %}
+      
+      {% csrf_token %}
+      <h2>Begin Your Shopping Journey</h2>
+      <div class="form-group">
+        <label for="id_username">Username</label>
+        <input type="text" id="id_username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="id_password">Password</label>
+        <input type="password" id="id_password" name="password" required>
+        <input type="checkbox" onclick="showPassword()">
+      </div>
+
+      <div class="form-group">
+        <button type="submit">Sign Up</button>
+      </div>
+    </form>
+    
+  </body>
+</html>
+
+<script>
+    function showPassword() {
+      var passwordInput = document.getElementById("password");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    }
+  </script>
+
+{% endblock %}
+    </div> 
+>>>>>>> master

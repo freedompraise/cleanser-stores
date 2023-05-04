@@ -1,6 +1,10 @@
-from django.forms import ModelForm,forms
-from .models import Product
+from django.forms import ModelForm
 from django import forms
+from .models import Product
+<<<<<<< HEAD
+from django import forms
+=======
+>>>>>>> master
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -8,6 +12,7 @@ class ProductForm(ModelForm):
     class Meta:
         model=Product
         fields='__all__'
+<<<<<<< HEAD
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -46,3 +51,5 @@ class NewUserForm(UserCreationForm):
 		if commit:
 			user.save()
 		return user
+=======
+>>>>>>> master

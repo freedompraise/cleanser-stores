@@ -3,6 +3,7 @@
 {% block content %}
 
 
+
 {% if products %}
 <h2 style="position:relative; right:-40px;">Shopping Cart</h2>
 <div class="container pb-3 mb-1" style="max-width:800px; margin-bottom:200px;">
@@ -33,7 +34,9 @@
             <div class="cart-item-label">Discount</div><span class="text-xl font-weight-medium">${{product.discount}}</span>
         </div>
         <div class="px-4 my-3 text-center">
-            <div class="cart-item-label"><button type="submit" >&#x2718;</button></div>
+            <div class="cart-item-label">
+                <a href="{% url 'delete' product.id %}">&#x2718;</a>
+            </div>
         </div>
     </div>
     <hr>
@@ -56,13 +59,12 @@
       {% else %}
 
     			 <div class="row">
-					< class="col-md-12">
 							<div class="cards">
 						<div class="card-header">
 						</div>
 						<div class="card-body cart">
 								<div class="col-sm-12 empty-cart-cls text-center">
-									<img src="{{product.avatar.url}}" width="130" height="130" class="img-fluid mb-4 mr-3">
+									<img src="{% static 'images/images.png' %}" width="130" height="130" class="img-fluid mb-4 mr-3">
 									<h3><strong>Your have no item on your cart</strong></h3>
 									<h4>It's time to go shopping</h4>
                    <a href="{% url 'store' %}"> <button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3" href="{% url 'store' %}">Back to shopping</button> </a>

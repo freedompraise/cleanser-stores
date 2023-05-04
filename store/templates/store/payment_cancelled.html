@@ -1,0 +1,18 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block extrahead %}
+<title>Payment Cancelled - Cleanser-stores</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/payment.css' %}">
+{% endblock extrahead %}
+
+{% block content %}
+<body>
+
+    <div class="container text-center my-5">
+        <h1 class="display-4">Payment Cancelled</h1>
+        <p class="lead">You have cancelled your payment.</p>
+    </div>
+
+</body>
+{% endblock content %}

@@ -1,0 +1,86 @@
+body {
+    background-color: #FFFFCC;
+    color: #000099;
+  }
+  
+  /* style the header and logo */
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000099;
+    color: #FFFFCC;
+  }
+  
+  header h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* style the login and register forms */
+  form {
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #FFFFCC;
+    border: 1px solid #000099;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  form label,
+  form input,
+  form button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  form input[type="text"],
+  form input[type="password"] {
+    height: 32px;
+    font-size: 16px;
+    border: 1px solid #000099;
+    border-radius: 5px;
+    padding: 0 10px;
+  }
+  
+  form button[type="submit"] {
+    height: 32px;
+    font-size: 16px;
+    background-color: #000099;
+    color: #FFFFCC;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  form button[type="submit"]:hover {
+    background-color: #FFFFCC;
+    color: #000099;
+  }
+
+/* style the form container */
+.form-container {
+  position: relative;
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #FFFFCC;
+  border: 1px solid #000099;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+/* style the cart image */
+.form-container .cart-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: url(/static/images/cart.png) no-repeat;
+}
+
+

@@ -1,0 +1,18 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block extrahead %}
+<title>Payment Successful - Cleanser-stores</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/payment.css' %}">
+{% endblock extrahead %}
+
+{% block content %}
+<body>
+
+    <div class="container text-center my-5">
+        <h1 class="display-4">Payment Successful!</h1>
+        <p class="lead">Thank you for your purchase.</p>
+    </div>
+
+</body>
+{% endblock content %}
