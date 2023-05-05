@@ -85,11 +85,15 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
 MEDIA_URL = '/images/'
+
 MEDIA_ROOT='BASE_DIR/"static/images"'
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -114,5 +118,7 @@ SECURE_HSTS_PRELOAD = True
 
 # set SESSION_COOKIE_SECURE and CSRF_COOKIE_SECURE to True to use secure-only cookies
 SESSION_COOKIE_SECURE = True
+
 CSRF_COOKIE_SECURE = True
+
 SECRET_KEY = get_random_secret_key()
