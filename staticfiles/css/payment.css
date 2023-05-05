@@ -1,0 +1,29 @@
+/* Facebook-inspired colors */
+.btn-fb {
+    color: #fff;
+    background-color: #3b5998;
+    border-color: #3b5998;
+}
+.btn-fb:hover {
+    color: #fff;
+    background-color: #2d4373;
+    border-color: #1d3557;
+}
+
+/* AWS-inspired colors */
+.btn-aws {
+    color: #fff;
+    background-color: #232f3e;
+    border-color: #232f3e;
+}
+.btn-aws:hover {
+    color: #fff;
+    background-color: #1d2939;
+    border-color: #0f1c28;
+}
+
+/* Payment form styling */
+.jumbotron {
+    background-color: #f6f8fa;
+    border: 1px solid #dddfe2;
+}

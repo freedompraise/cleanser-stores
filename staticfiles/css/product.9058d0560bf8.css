@@ -1,0 +1,64 @@
+/* apply a royal blue and yellow color scheme to the page */
+body {
+  color: #1e1ec0;
+  text-align: center;
+  background-color: #FFFFCE;
+}
+
+/* style the product page container */
+.product-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #E0CA3C;
+  border: 1px solid #1e1ec0;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+/* style the product avatar image */
+.product-page .product-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+}
+
+/* style the product name and price */
+.product-page .product-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #1e1ec0;
+}
+
+.product-page .product-price {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* style the product rating */
+.product-page .product-rating {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.product-page .product-rating i {
+  color: #FFFFCC;
+}
+
+/* style the product description */
+.product-page .product-description {
+  font-size: 18px;
+  margin: 10px 0;
+  text-align: left;
+}
+
+/* style the product form */
+.product-page .product-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
