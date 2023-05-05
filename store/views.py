@@ -1,7 +1,6 @@
 #DJANGO
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import ProductForm, UserForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,logout, get_user_model
 from django.contrib.auth import login as auth_login
