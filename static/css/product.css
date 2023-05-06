@@ -2,7 +2,7 @@
 body {
   color: #1e1ec0;
   text-align: center;
-  background-color: #FFFFCE;
+  background-color: #FFFFCC;
 }
 
 /* style the product page container */
@@ -12,7 +12,7 @@ body {
   align-items: center;
   max-width: 800px;
   margin: 0 auto;
-  background-color: #E0CA3C;
+  background-color: #ffbd27;
   border: 1px solid #1e1ec0;
   border-radius: 5px;
   padding: 20px;
